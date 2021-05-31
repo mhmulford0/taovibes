@@ -32,6 +32,7 @@ module.exports = {
     'prettier/prettier': 'error',
     'react/no-unescaped-entities': 'off',
     'import/no-cycle': [0, { ignoreExternal: true }],
+    'react/react-in-jsx-scope': 'off',
     'prefer-const': 'off',
     // needed because of https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-use-before-define.md#how-to-use & https://stackoverflow.com/questions/63818415/react-was-used-before-it-was-defined
     'no-use-before-define': 'off',
@@ -42,12 +43,8 @@ module.exports = {
   },
   settings: {
     'import/resolver': {
-      'babel-module': {
-        extensions: ['.js', '.jsx', '.ts', '.tsx'],
-      },
       node: {
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
-        paths: ['src'],
       },
     },
   },
