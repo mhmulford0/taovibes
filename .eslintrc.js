@@ -40,6 +40,7 @@ module.exports = {
       'error',
       { functions: false, classes: false, variables: true },
     ],
+    'no-shadow': 'off',
   },
   settings: {
     'import/resolver': {
