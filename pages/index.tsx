@@ -8,11 +8,18 @@ const stripePromise = loadStripe(
 const Home: React.FC = () => {
   const handleClick = async () => {
     const stripe = await stripePromise
+
     const response = await fetch('/api/create-checkout-session', { method: 'POST' })
+
     const session = await response.json()
+
     const result = await stripe.redirectToCheckout({
       sessionId: session.id,
     })
+
+    if (result.error) {
+      console.log(result.error)
+    }
   }
   return (
     <div className="container">

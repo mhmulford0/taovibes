@@ -1,10 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import Stripe from 'stripe'
 
-const stripe = new Stripe(
-  'sk_test_51IxGBDKhu8QN3H5CdZcYUSXi6jXDDViJKaNcl9VgBEHHL2QoUXGcMjIx3lc0T0kiBNbNa8GdWwq6KWhCD17zZXGL0028zDtYW4',
-  { apiVersion: '2020-08-27' }
-)
+const stripe = new Stripe(`${process.env.SERVER_KEY}`, { apiVersion: '2020-08-27' })
 
 enum products {
   candles = 'price_1IxGQJKhu8QN3H5C0d3lBIj2',
