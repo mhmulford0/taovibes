@@ -1,7 +1,5 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import { loadStripe } from '@stripe/stripe-js'
-import styles from '../styles/Home.module.css'
 
 const stripePromise = loadStripe(
   'pk_test_51IxGBDKhu8QN3H5CjvNZbJYbY6mwnLUookgLLgXytYwkyBFwP2VoV4XO75FQwPweHpCWbXb7cvEZLhv3KkgpML3G00zERK9Sim'
@@ -17,24 +15,70 @@ const Home: React.FC = () => {
     })
   }
   return (
-    <div className={styles.container}>
+    <div className="container">
       <Head>
         <title>Tao Vibrations</title>
         <meta name="description" content="Tao Vibrations Online Shop" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
-        <p>
-          <button role="link" type="button" onClick={handleClick}>
-            Candle Checkout
-          </button>
-        </p>
+      <main className="section is-medium">
+        <h1 className="title is-1 has-text-centered">Tao Vibrations</h1>
+        <div className="columns">
+          <div className="column is-half">
+            <div className="card">
+              <div className="card-image">
+                <figure className="image is-4by3">
+                  <img src="/candle.jpg" alt="Candle" />
+                </figure>
+              </div>
+              <div className="card-content">
+                <div className="content">
+                  <p className="title is-4">Aroma Therpy Candle</p>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis
+                    mauris.
+                  </p>
+                  <button
+                    role="link"
+                    type="button"
+                    className="button is-primary is-medium is-fullwidth"
+                    onClick={handleClick}
+                  >
+                    Checkout
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="column is-half">
+            <div className="card">
+              <div className="card-image">
+                <figure className="image is-4by3">
+                  <img src="/candle.jpg" alt="Candle" />
+                </figure>
+              </div>
+              <div className="card-content">
+                <div className="content">
+                  <p className="title is-4">Aroma Therpy Candle</p>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis
+                    mauris.
+                  </p>
+                  <button
+                    role="link"
+                    type="button"
+                    className="button is-primary is-medium is-fullwidth"
+                    onClick={handleClick}
+                  >
+                    Checkout
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </main>
-
-      <footer className={styles.footer}>
-        <p>footer</p>
-      </footer>
     </div>
   )
 }
