@@ -4,6 +4,7 @@ import CardItem from 'components/CardItem'
 import NavBar from 'components/NavBar'
 import Cart from 'components/Cart'
 import { loadStripe } from '@stripe/stripe-js'
+import axios from 'axios'
 
 interface Props {
   products?: unknown[]
@@ -24,10 +25,9 @@ const Home: React.FC<Props> = ({ products, error }) => {
   const [open, setOpen] = useState(false)
   const handleClick = async () => {
     const stripe = await stripePromise
-    const response = await fetch('/api/create-checkout-session', { method: 'POST' })
-    const session = await response.json()
+    const { data } = await axios.post('/api/create-checkout-session')
     const result = await stripe.redirectToCheckout({
-      sessionId: session.id,
+      sessionId: data.id,
     })
 
     if (result.error) {

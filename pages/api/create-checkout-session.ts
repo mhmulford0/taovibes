@@ -8,6 +8,7 @@ enum products {
   bracelets = '',
 }
 export default async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
+  const { price } = req.body
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ['card'],
     line_items: [
