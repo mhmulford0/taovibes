@@ -1,14 +1,17 @@
+import { useState } from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
 import { loadStripe } from '@stripe/stripe-js'
 import CardItem from 'components/CardItem'
 import NavBar from 'components/NavBar'
+import Cart from 'components/Cart'
 
 const stripePromise = loadStripe(
   'pk_test_51IxGBDKhu8QN3H5CjvNZbJYbY6mwnLUookgLLgXytYwkyBFwP2VoV4XO75FQwPweHpCWbXb7cvEZLhv3KkgpML3G00zERK9Sim'
 )
 
 const Home: React.FC = () => {
+  const [open, setOpen] = useState(false)
   const handleClick = async () => {
     const stripe = await stripePromise
     const response = await fetch('/api/create-checkout-session', { method: 'POST' })
@@ -23,7 +26,9 @@ const Home: React.FC = () => {
   }
   return (
     <>
-      <NavBar />
+      <Cart open={open} setOpen={setOpen} />
+      <NavBar setOpen={setOpen} />
+
       <div className="container">
         <Head>
           <title>Tao Vibrations</title>

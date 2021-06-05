@@ -1,4 +1,8 @@
-const CardItem = ({ handleClick }) => {
+interface Props {
+  handleClick: () => void
+}
+
+const CardItem: React.FC<Props> = ({ handleClick }) => {
   return (
     <div className="card">
       <div className="card-image">
