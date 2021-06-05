@@ -23,9 +23,9 @@ const stripePromise = loadStripe(
 )
 const Home: React.FC<Props> = ({ products, error }) => {
   const [open, setOpen] = useState(false)
-  const handleClick = async () => {
+  const handleClick = async (id: string) => {
     const stripe = await stripePromise
-    const { data } = await axios.post('/api/create-checkout-session')
+    const { data } = await axios.post('/api/create-checkout-session', { product: id })
     const result = await stripe.redirectToCheckout({
       sessionId: data.id,
     })
@@ -38,7 +38,7 @@ const Home: React.FC<Props> = ({ products, error }) => {
     <>
       <Cart open={open} setOpen={setOpen} />
       <NavBar setOpen={setOpen} />
-
+      {console.log(products)}
       <div className="container">
         <Head>
           <title>Tao Vibrations</title>
@@ -61,7 +61,7 @@ const Home: React.FC<Props> = ({ products, error }) => {
                       <CardItem
                         id={product.id}
                         description={product.description}
-                        handleClick={handleClick}
+                        handleClick={() => handleClick(product.id)}
                         images={product.images}
                         name={product.name}
                       />

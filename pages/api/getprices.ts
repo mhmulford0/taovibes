@@ -4,9 +4,7 @@ import Stripe from 'stripe'
 const stripe = new Stripe(`${process.env.SERVER_KEY}`, { apiVersion: '2020-08-27' })
 
 export default async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
-  const prices = await stripe.prices.list({
-    limit: 3,
-  })
+  const prices = await stripe.prices.list({})
 
   switch (req.method) {
     case 'GET':
