@@ -17,8 +17,8 @@ export default async (req: NextApiRequest, res: NextApiResponse): Promise<void> 
       },
     ],
     mode: 'payment',
-    success_url: 'https://example.com/success',
-    cancel_url: 'https://example.com/cancel',
+    success_url: process.env.BASE_URL,
+    cancel_url: process.env.BASE_URL,
   })
 
   switch (req.method) {
