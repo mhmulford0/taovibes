@@ -4,12 +4,11 @@ import Stripe from 'stripe'
 const stripe = new Stripe(`${process.env.SERVER_KEY}`, { apiVersion: '2020-08-27' })
 
 export default async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
-  const { cartData } = req.body
-  console.log(cartData)
+  const { checkout } = req.body
 
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ['card'],
-    line_items: cartData,
+    line_items: checkout,
     mode: 'payment',
     success_url: process.env.BASE_URL,
     cancel_url: process.env.BASE_URL,

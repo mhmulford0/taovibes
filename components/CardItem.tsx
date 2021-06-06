@@ -65,7 +65,9 @@ const CardItem: React.FC<Props> = ({ price, description, images, name, setCartDa
             role="link"
             type="button"
             className="button is-info is-medium is-fullwidth"
-            onClick={() => setCartData((prevState) => [...prevState, { price, quantity: qty }])}
+            onClick={() =>
+              setCartData((prevState) => [...prevState, { price, quantity: qty, images, name }])
+            }
           >
             Add To Cart
           </button>

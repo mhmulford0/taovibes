@@ -21,11 +21,10 @@ interface Product {
 const Home: React.FC<Props> = ({ products, error }) => {
   const [open, setOpen] = useState(false)
   const [cartData, setCartData] = useState([])
-  console.log(cartData)
   return (
     <>
       <Cart open={open} setOpen={setOpen} cartData={cartData} />
-      <NavBar setOpen={setOpen} />
+      <NavBar setOpen={setOpen} cartData={cartData} />
       <div className="container">
         <Head>
           <title>Tao Vibrations</title>

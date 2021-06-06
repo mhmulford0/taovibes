@@ -4,13 +4,18 @@ $family-sans-serif: 'Nunito', sans-serif;
 
 $light: #fbfbff;
 $tv-green: #62929e;
-$primary: $tv-green;
-$info: #65b3e3;
-$danger: #f15946;
+$amethyst: #675682;
+$blue-topaz: #67aeca;
+$jewel: #5f0f4e;
+$rose: #e52a6f;
+$primary: $amethyst;
+$info: $jewel;
+$danger: $rose;
 
-$card-background-color: #ebf1f3;
+$card-background-color: #eeeeee;
 $body-background-color: $light;
-$navbar-background-color: $tv-green;
+$navbar-background-color: $amethyst;
+$navbar-item-color: white;
 
 // Update some of Bulma's component variables
 @import '../node_modules/bulma/bulma.sass';

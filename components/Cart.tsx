@@ -4,7 +4,7 @@ import axios from 'axios'
 interface Props {
   open: boolean
   setOpen: React.Dispatch<React.SetStateAction<boolean>>
-  cartData: Record<string, unknown>[]
+  cartData: Record<string, any>[]
 }
 
 const stripePromise = loadStripe(
@@ -13,8 +13,12 @@ const stripePromise = loadStripe(
 
 const Cart: React.FC<Props> = ({ open, setOpen, cartData }) => {
   const handleClick = async () => {
+    const checkout = cartData.map((data) => {
+      return { price: data.price, quantity: data.quantity }
+    })
+
     const stripe = await stripePromise
-    const { data } = await axios.post('/api/create-checkout-session', { cartData })
+    const { data } = await axios.post('/api/create-checkout-session', { checkout })
     const result = await stripe.redirectToCheckout({
       sessionId: data.id,
     })
@@ -30,11 +34,29 @@ const Cart: React.FC<Props> = ({ open, setOpen, cartData }) => {
         <header className="modal-card-head">
           <p className="modal-card-title">Your Cart</p>
         </header>
-        <section className="modal-card-body">this is where items go</section>
+        <section className="modal-card-body">
+          {cartData.length < 1 ? (
+            <h3 className="title is-3">No Items</h3>
+          ) : (
+            cartData.map((item) => {
+              return (
+                <p key={item.id}>
+                  {item.name} - Qty: {item.quantity}
+                </p>
+              )
+            })
+          )}
+        </section>
         <footer className="modal-card-foot">
-          <button className="button is-primary" type="button" onClick={handleClick}>
-            Checkout
-          </button>
+          {cartData.length < 1 ? (
+            <button className="button is-primary" type="button" disabled onClick={handleClick}>
+              Checkout
+            </button>
+          ) : (
+            <button className="button is-primary" type="button" onClick={handleClick}>
+              Checkout
+            </button>
+          )}
           <button className="button" type="button" onClick={() => setOpen(false)}>
             Close
           </button>

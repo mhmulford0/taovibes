@@ -8,7 +8,6 @@ interface Props {
 }
 
 const Index: React.FC<Props> = ({ products, error }) => {
-  console.log(products)
   return <Home products={products} error={error} />
 }
 
