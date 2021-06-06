@@ -34,7 +34,7 @@ const NavBar: React.FC<Props> = ({ setOpen, cartData }) => {
               <a className="button is-info is-medium" onClick={() => setOpen(true)}>
                 <strong>Cart</strong>
                 <FaShoppingCart />
-                <span className="tag is-danger">{cartData.length} </span>
+                <span className="tag is-danger ml-2">{cartData.length} </span>
               </a>
             </div>
           </div>

@@ -12,7 +12,7 @@ interface Props {
 
 const CardItem: React.FC<Props> = ({ price, description, images, name, setCartData }) => {
   const [qty, setQty] = useState(1)
-
+  const [added, setAdded] = useState(false)
   const plusOne = () => {
     setQty(qty + 1)
   }
@@ -21,11 +21,12 @@ const CardItem: React.FC<Props> = ({ price, description, images, name, setCartDa
       setQty(qty - 1)
     }
   }
+
   return (
     <div className="card">
       <div className="card-image">
         <figure className="image is-4by3">
-          <img src={images[0] || ''} alt="Candle" />
+          <img src={images[0] || ''} alt="item" />
         </figure>
       </div>
       <div className="card-content">
@@ -61,16 +62,28 @@ const CardItem: React.FC<Props> = ({ price, description, images, name, setCartDa
               <FaMinus />
             </button>
           </div>
-          <button
-            role="link"
-            type="button"
-            className="button is-info is-medium is-fullwidth"
-            onClick={() =>
-              setCartData((prevState) => [...prevState, { price, quantity: qty, images, name }])
-            }
-          >
-            Add To Cart
-          </button>
+          {added ? (
+            <button
+              role="link"
+              type="button"
+              className="button is-info is-medium is-fullwidth"
+              disabled
+            >
+              Added
+            </button>
+          ) : (
+            <button
+              role="link"
+              type="button"
+              className="button is-info is-medium is-fullwidth"
+              onClick={() => {
+                setAdded(true)
+                setCartData((prevState) => [...prevState, { price, quantity: qty, images, name }])
+              }}
+            >
+              Add To Cart
+            </button>
+          )}
         </div>
       </div>
     </div>
