@@ -33,7 +33,10 @@ const Home: React.FC<Props> = ({ products, error }) => {
 
         <main className="section is-medium">
           <div className="columns has-text-centered">
-            <div className="column is-12 is-flex is-align-items-flex-center is-justify-content-center is-align-content-center">
+            <div className="column is-12 is-flex is-align-items-flex-center is-justify-content-center is-flex-direction-column has-text-centered">
+              <span>
+                <img className="is-rounded" width="125px" src="/logo.png" alt="logo" />
+              </span>
               <h1 className="title is-1 has-text-centered is-inline ">Tao Vibrations</h1>
             </div>
           </div>
