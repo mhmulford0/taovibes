@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import Head from 'next/head'
+
 import CardItem from 'components/CardItem'
 import NavBar from 'components/NavBar'
 import Cart from 'components/Cart'
@@ -34,10 +35,10 @@ const Home: React.FC<Props> = ({ products, error }) => {
         <main className="section is-medium">
           <div className="columns has-text-centered">
             <div className="column is-12 is-flex is-align-items-flex-center is-justify-content-center is-flex-direction-column has-text-centered">
-              <span>
+              <span style={{ marginTop: '1.5rem' }}>
                 <img className="is-rounded" width="125px" src="/logo.png" alt="logo" />
               </span>
-              <h1 className="title is-1 has-text-centered is-inline ">Tao Vibrations</h1>
+              <h1 className="title is-1 has-text-centered is-inline mb-6">Tao Vibrations</h1>
             </div>
           </div>
 
