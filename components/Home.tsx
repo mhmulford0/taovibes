@@ -3,8 +3,6 @@ import Head from 'next/head'
 import CardItem from 'components/CardItem'
 import NavBar from 'components/NavBar'
 import Cart from 'components/Cart'
-import { loadStripe } from '@stripe/stripe-js'
-import axios from 'axios'
 
 interface Props {
   products?: unknown[]
@@ -18,27 +16,14 @@ interface Product {
   name: string
 }
 
-const stripePromise = loadStripe(
-  'pk_test_51IxGBDKhu8QN3H5CjvNZbJYbY6mwnLUookgLLgXytYwkyBFwP2VoV4XO75FQwPweHpCWbXb7cvEZLhv3KkgpML3G00zERK9Sim'
-)
 const Home: React.FC<Props> = ({ products, error }) => {
   const [open, setOpen] = useState(false)
-  const handleClick = async (id: string) => {
-    const stripe = await stripePromise
-    const { data } = await axios.post('/api/create-checkout-session', { product: id })
-    const result = await stripe.redirectToCheckout({
-      sessionId: data.id,
-    })
-
-    if (result.error) {
-      console.log(result.error)
-    }
-  }
+  const [cartData, setCartData] = useState([])
+  console.log(cartData)
   return (
     <>
-      <Cart open={open} setOpen={setOpen} />
+      <Cart open={open} setOpen={setOpen} cartData={cartData} />
       <NavBar setOpen={setOpen} />
-      {console.log(products)}
       <div className="container">
         <Head>
           <title>Tao Vibrations</title>
@@ -53,17 +38,17 @@ const Home: React.FC<Props> = ({ products, error }) => {
             </div>
           </div>
 
-          <div className="columns">
+          <div className="columns is-flex-wrap-wrap is-justify-content-center is-align-items-center is-flex-grow-1">
             {!error
               ? products.map((product: Product) => {
                   return (
-                    <div key={product.id} className="column is-half">
+                    <div key={product.id} className="column is-centered is-two-fifths">
                       <CardItem
                         id={product.id}
                         description={product.description}
-                        handleClick={() => handleClick(product.id)}
                         images={product.images}
                         name={product.name}
+                        setCartData={setCartData}
                       />
                     </div>
                   )

@@ -4,17 +4,21 @@ import Stripe from 'stripe'
 const stripe = new Stripe(`${process.env.SERVER_KEY}`, { apiVersion: '2020-08-27' })
 
 export default async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
-  const { product } = req.body
+  const { cartData } = req.body
   const prices = await stripe.prices.list()
-
-  const checkout = prices.data.find((price) => price.product === product)
+  // console.log(cartData)
+  // console.log(prices)
+  // //const checkout = prices.data.find((price) => price.product === cartData.map())
 
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ['card'],
     line_items: [
       {
-        price: checkout.id,
+        name: 'test',
+        description: 'test',
+        amount: 100,
         quantity: 1,
+        currency: 'USD',
       },
     ],
     mode: 'payment',

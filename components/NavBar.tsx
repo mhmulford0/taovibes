@@ -36,7 +36,7 @@ const NavBar: React.FC<Props> = ({ setOpen }) => {
         <div className="navbar-end">
           <div className="navbar-item">
             <div className="buttons">
-              <a className="button is-primary is-medium" onClick={() => setOpen(true)}>
+              <a className="button is-info is-medium" onClick={() => setOpen(true)}>
                 <strong>Cart</strong> <FaShoppingCart />
               </a>
             </div>

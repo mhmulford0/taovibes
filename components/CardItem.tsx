@@ -1,20 +1,17 @@
-import React, { useState } from 'react'
+import React, { useState, Dispatch, SetStateAction } from 'react'
 import { FaPlus, FaMinus } from 'react-icons/fa'
 
 interface Props {
-  handleClick: (id: string) => void
+  setCartData: Dispatch<SetStateAction<any[]>>
   id: string
   description: string
   images: string[]
   name: string
 }
 
-const CardItem: React.FC<Props> = ({ handleClick, id, description, images, name }) => {
+const CardItem: React.FC<Props> = ({ id, description, images, name, setCartData }) => {
   const [qty, setQty] = useState(1)
-  const handleChange = (e: React.SyntheticEvent<HTMLInputElement>) => {
-    setQty(+e.currentTarget.value)
-    return e.currentTarget.value
-  }
+
   const plusOne = () => {
     setQty(qty + 1)
   }
@@ -31,33 +28,33 @@ const CardItem: React.FC<Props> = ({ handleClick, id, description, images, name 
         </figure>
       </div>
       <div className="card-content">
-        <div className="content">
-          <p className="title is-4">{name}</p>
-          <p>{description}</p>
+        <div className="content mb-2">
+          <p className="title is-4 mb-2">{name}</p>
+          <p className="mt-4">{description}</p>
           <div
-            className="control mb-4 is-half"
+            className="control mb-5 is-half"
             style={{
               display: 'flex',
               flexWrap: 'nowrap',
-              width: '50%',
               justifyContent: 'center',
               alignItems: 'center',
               textAlign: 'center',
             }}
           >
-            <button type="button" className="button is-primary is-medium" onClick={plusOne}>
+            <button type="button" className="button is-primary is-medium mx-2" onClick={plusOne}>
               <FaPlus />
             </button>
             <input
-              className="input is-medium mx-2"
+              className="input is-medium"
               type="text"
               placeholder="Quantity"
               value={qty}
               readOnly
+              style={{ width: '20%', textAlign: 'center' }}
             />
             <button
               type="button"
-              className="button is-primary is-medium is-danger"
+              className="button is-primary is-medium is-danger mx-2"
               onClick={minusOne}
             >
               <FaMinus />
@@ -67,9 +64,9 @@ const CardItem: React.FC<Props> = ({ handleClick, id, description, images, name 
             role="link"
             type="button"
             className="button is-info is-medium is-fullwidth"
-            onClick={() => handleClick(id)}
+            onClick={() => setCartData((prevState) => [...prevState, { id, qty }])}
           >
-            Checkout
+            Add To Cart
           </button>
         </div>
       </div>
