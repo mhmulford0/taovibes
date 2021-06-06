@@ -8,7 +8,7 @@ interface Props {
 }
 
 const stripePromise = loadStripe(
-  'pk_test_51IxGBDKhu8QN3H5CjvNZbJYbY6mwnLUookgLLgXytYwkyBFwP2VoV4XO75FQwPweHpCWbXb7cvEZLhv3KkgpML3G00zERK9Sim'
+  'pk_live_51IxGBDKhu8QN3H5Co184XxwF3F7g4p45OmGykGs9WNqxrIFh9i2bPGvkVKmEBwvJcCkea7y0HQdHEMHn9SpBnLWT00XABnIkTs'
 )
 
 const Cart: React.FC<Props> = ({ open, setOpen, cartData }) => {
