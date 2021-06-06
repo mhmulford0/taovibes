@@ -7,7 +7,6 @@ export default async (req: NextApiRequest, res: NextApiResponse): Promise<void> 
   const { prices } = req.query
   const price = await stripe.prices.retrieve(prices.toString())
   const product = await stripe.products.retrieve(price.product.toString())
-  console.log(product)
 
   switch (req.method) {
     case 'GET':
