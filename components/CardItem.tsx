@@ -7,9 +7,10 @@ interface Props {
   description: string
   images: string[]
   name: string
+  price: string
 }
 
-const CardItem: React.FC<Props> = ({ id, description, images, name, setCartData }) => {
+const CardItem: React.FC<Props> = ({ price, description, images, name, setCartData }) => {
   const [qty, setQty] = useState(1)
 
   const plusOne = () => {
@@ -64,7 +65,7 @@ const CardItem: React.FC<Props> = ({ id, description, images, name, setCartData 
             role="link"
             type="button"
             className="button is-info is-medium is-fullwidth"
-            onClick={() => setCartData((prevState) => [...prevState, { id, qty }])}
+            onClick={() => setCartData((prevState) => [...prevState, { price, quantity: qty }])}
           >
             Add To Cart
           </button>

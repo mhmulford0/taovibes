@@ -32,7 +32,7 @@ const Cart: React.FC<Props> = ({ open, setOpen, cartData }) => {
         </header>
         <section className="modal-card-body">this is where items go</section>
         <footer className="modal-card-foot">
-          <button className="button is-success" type="button" onClick={handleClick}>
+          <button className="button is-primary" type="button" onClick={handleClick}>
             Checkout
           </button>
           <button className="button" type="button" onClick={() => setOpen(false)}>

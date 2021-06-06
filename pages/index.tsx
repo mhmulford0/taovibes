@@ -16,7 +16,7 @@ export default Index
 
 export const getServerSideProps: GetServerSideProps = async () => {
   try {
-    const { data } = await axios.get(`${process.env.BASE_URL}/api/getproducts`)
+    const { data } = await axios.get(`${process.env.BASE_URL}/api/getprices`)
     return {
       props: {
         products: data,
