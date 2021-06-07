@@ -25,7 +25,7 @@ const CardItem: React.FC<Props> = ({ price, description, images, name, setCartDa
   return (
     <div className="card">
       <div className="card-image">
-        <figure className="image is-4by3">
+        <figure className="image is-1by1">
           <img src={images[0] || ''} alt="item" />
         </figure>
       </div>
