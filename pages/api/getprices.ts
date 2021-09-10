@@ -9,7 +9,7 @@ export default async (req: NextApiRequest, res: NextApiResponse): Promise<void> 
   let result = []
   prices.data.map((price) => {
     products.data.map((product) => {
-      if (price.product.toString() === product.id.toString()) {
+      if (price.product.toString() === product.id.toString() && product.active === true) {
         result.push({ price: price.id, ...product })
       }
       return null

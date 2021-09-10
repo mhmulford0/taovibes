@@ -6,8 +6,8 @@ import NavBar from 'components/NavBar'
 import Cart from 'components/Cart'
 
 interface Props {
-  products?: unknown[]
-  error?: string
+  products: unknown[]
+  error: string
 }
 
 interface Product {

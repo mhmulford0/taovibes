@@ -40,7 +40,7 @@ const Cart: React.FC<Props> = ({ open, setOpen, cartData }) => {
           ) : (
             cartData.map((item) => {
               return (
-                <p key={item.id}>
+                <p key={item.price}>
                   {item.name} - Qty: {item.quantity}
                 </p>
               )
