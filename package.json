@@ -16,6 +16,7 @@
     "@types/stripe": "^8.0.417",
     "axios": "^0.21.1",
     "bulma": "^0.9.2",
+    "husky": "^7.0.2",
     "next": "^11.1.2",
     "react": "17.0.2",
     "react-dom": "17.0.2",
@@ -44,7 +45,7 @@
   "lint-staged": {
     "**/*.{js,jsx,ts,tsx}": [
       "npx prettier --write",
-      "npx eslint --fix --ext .js,.jsx,.ts,.tsx"
+      "npx eslint --max-warnings=0 --fix --ext .js,.jsx,.ts,.tsx"
     ]
   }
 }
