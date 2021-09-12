@@ -1,5 +1,6 @@
 import React, { useState, Dispatch, SetStateAction } from 'react'
 import { FaPlus, FaMinus } from 'react-icons/fa'
+import Image from 'next/image'
 
 interface Props {
   setCartData: Dispatch<SetStateAction<any[]>>
@@ -31,7 +32,7 @@ const CardItem: React.FC<Props> = ({ price, description, images, name, setCartDa
     <div className="card">
       <div className="card-image">
         <figure className="image is-1by1">
-          <img src={images[0] || ''} alt="item" />
+          <Image src={images[0] || ''} alt="item" />
         </figure>
       </div>
       <div className="card-content">
