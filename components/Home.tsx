@@ -17,6 +17,7 @@ interface Product {
   images: []
   name: string
   price: string
+  cost: number
 }
 
 const Home: React.FC<Props> = ({ products, error }) => {
@@ -59,6 +60,7 @@ const Home: React.FC<Props> = ({ products, error }) => {
                         description={product.description}
                         images={product.images}
                         name={product.name}
+                        cost={product.cost}
                         setCartData={setCartData}
                         price={product.price}
                       />

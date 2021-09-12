@@ -11,6 +11,7 @@ interface Props {
 }
 
 const NavBar: React.FC<Props> = ({ setOpen, cartData }) => {
+  const cartLength = cartData.reduce((a, b) => a + (b.quantity || 0), 0)
   return (
     <nav className="navbar is-fixed-top" role="navigation" aria-label="main navigation">
       <div className="navbar-brand">
@@ -18,7 +19,6 @@ const NavBar: React.FC<Props> = ({ setOpen, cartData }) => {
           <b>TaoV</b>
         </div>
       </div>
-
       <div id="navbarBasicExample" className="navbar-menu">
         <div className="navbar-start">{/* <a className="navbar-item">Home</a> */}</div>
         <div className="navbar-end">
@@ -26,7 +26,7 @@ const NavBar: React.FC<Props> = ({ setOpen, cartData }) => {
             <div className="buttons">
               <a className="button is-primary is-medium" onClick={() => setOpen(true)}>
                 <FaShoppingCart />
-                <span className="tag is-danger ml-2">{cartData.length} </span>
+                <span className="tag is-danger ml-2">{cartLength} </span>
               </a>
             </div>
           </div>

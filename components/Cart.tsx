@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { loadStripe } from '@stripe/stripe-js'
 import axios from 'axios'
 
@@ -7,24 +8,24 @@ interface Props {
   cartData: Record<string, any>[]
 }
 
-const stripePromise = loadStripe(
-  'pk_live_51IxGBDKhu8QN3H5Co184XxwF3F7g4p45OmGykGs9WNqxrIFh9i2bPGvkVKmEBwvJcCkea7y0HQdHEMHn9SpBnLWT00XABnIkTs'
-)
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_PUBLIC_KEY.toString())
 
 const Cart: React.FC<Props> = ({ open, setOpen, cartData }) => {
+  const [error, setError] = useState(false)
   const handleClick = async () => {
-    const checkout = cartData.map((data) => {
-      return { price: data.price, quantity: data.quantity }
-    })
+    try {
+      setError(false)
+      const checkout = cartData.map((data) => {
+        return { price: data.price, quantity: data.quantity }
+      })
 
-    const stripe = await stripePromise
-    const { data } = await axios.post('/api/create-checkout-session', { checkout })
-    const result = await stripe.redirectToCheckout({
-      sessionId: data.id,
-    })
-
-    if (result.error) {
-      console.log(result.error)
+      const stripe = await stripePromise
+      const { data } = await axios.post('/api/create-checkout-session', { checkout })
+      await stripe.redirectToCheckout({
+        sessionId: data.id,
+      })
+    } catch (error) {
+      setError(true)
     }
   }
   return (
@@ -35,6 +36,7 @@ const Cart: React.FC<Props> = ({ open, setOpen, cartData }) => {
           <p className="modal-card-title">Your Cart</p>
         </header>
         <section className="modal-card-body">
+          {error ? <h3 className="title is-3">Error With Cart</h3> : ''}
           {cartData.length < 1 ? (
             <h3 className="title is-3">No Items</h3>
           ) : (

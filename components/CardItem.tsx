@@ -8,11 +8,16 @@ interface Props {
   images: string[]
   name: string
   price: string
+  cost: number
 }
 
-const CardItem: React.FC<Props> = ({ price, description, images, name, setCartData }) => {
+const CardItem: React.FC<Props> = ({ price, description, images, name, setCartData, cost }) => {
   const [qty, setQty] = useState(1)
   const [added, setAdded] = useState(false)
+  const displayPrice = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+  })
   const plusOne = () => {
     setQty(qty + 1)
   }
@@ -81,7 +86,7 @@ const CardItem: React.FC<Props> = ({ price, description, images, name, setCartDa
                 setCartData((prevState) => [...prevState, { price, quantity: qty, images, name }])
               }}
             >
-              Add To Cart
+              Add To Cart {displayPrice.format((cost / 100) * qty)}
             </button>
           )}
         </div>
