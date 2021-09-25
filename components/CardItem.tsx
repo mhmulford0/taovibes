@@ -29,10 +29,10 @@ const CardItem: React.FC<Props> = ({ price, description, images, name, setCartDa
   }
 
   return (
-    <div className="card">
+    <div className="card" style={{ minHeight: '30rem' }}>
       <div className="card-image">
         <figure className="image is-1by1">
-          <Image src={images[0] || ''} alt="item" />
+          <Image src={images[0] || ''} alt="item" layout="fill" />
         </figure>
       </div>
       <div className="card-content">
